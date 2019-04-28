@@ -20,6 +20,9 @@ public class Bomba extends Entidad{
 	}
 	
 	public void explotar() {
-		System.out.println("BUM");
+		if(this.esVisible == true) {
+			this.esVisible = false;
+			System.out.println("BUM");
+		}
 	}
 }
