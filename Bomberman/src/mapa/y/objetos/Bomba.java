@@ -22,7 +22,7 @@ public class Bomba extends Entidad{
 	public void explotar() {
 		if(this.esVisible == true) {
 			this.esVisible = false;
-			System.out.println("BUM");
+			System.out.println("BUM, la bomba "+idBomba+" Exploto");
 		}
 	}
 }

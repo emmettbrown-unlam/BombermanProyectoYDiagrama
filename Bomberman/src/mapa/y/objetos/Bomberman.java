@@ -48,7 +48,7 @@ public class Bomberman extends Entidad {
 	public void morir() {
 		if (this.esVisible == true) {
 			esVisible = false;
-			System.out.println("El bomberman ha muerto");
+			System.out.println("El bomberman " + nroBomberman+ " ha muerto");
 		}
 
 	}
@@ -56,5 +56,9 @@ public class Bomberman extends Entidad {
 	public void ponerBomba() {
 		miMapa.agregarBomba(ubicacion);
 		System.out.println("SE HA PUESTO LA BOMBA");
+	}
+	
+	public Ubicacion obtenerUbicacion() {
+		return super.ubicacion;
 	}
 }

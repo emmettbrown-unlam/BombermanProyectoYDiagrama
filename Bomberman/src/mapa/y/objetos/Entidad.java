@@ -21,4 +21,7 @@ public class Entidad {
 		return this.esVisible;
 	}
 	
+	public void cambiarVisibilidad() {
+		esVisible = !esVisible;
+	}
 }
