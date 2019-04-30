@@ -8,6 +8,7 @@ public class Obstaculo extends Entidad{
 		super(posIniX,posIniY);
 		idObstaculo = nroObstaculo;
 		nroObstaculo++;
+		this.destructible = true;
 	}
 	
 	public void destruir() {

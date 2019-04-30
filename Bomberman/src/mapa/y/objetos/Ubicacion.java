@@ -1,8 +1,8 @@
 package mapa.y.objetos;
 
 public class Ubicacion implements Comparable<Ubicacion> {
-	protected int posX;
-	protected int posY;
+	private int posX;
+	private int posY;
 
 	public Ubicacion(int posX, int posY) {
 		this.posX = posX;
@@ -23,6 +23,8 @@ public class Ubicacion implements Comparable<Ubicacion> {
 		if((cmp = this.posX - ubicacion.posX) == 0) 
 			return this.posY - ubicacion.posY;
 		return cmp;
+		
+//		return this.posX + this.posY - ubicacion.posY - ubicacion.posX;
 	}
 
 	@Override
@@ -38,7 +40,10 @@ public class Ubicacion implements Comparable<Ubicacion> {
 		result = prime * result + posY;
 		return result;
 	}
-
+	public Ubicacion clone() {
+		return new Ubicacion(getPosX(),getPosY());
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,6 +58,14 @@ public class Ubicacion implements Comparable<Ubicacion> {
 		if (posY != other.posY)
 			return false;
 		return true;
+	}
+
+	public void cambiarPosY(int i) {
+		this.posY +=i;	
+	}
+
+	public void cambiarPosX(int i) {
+		this.posX += i;
 	}
 	
 }

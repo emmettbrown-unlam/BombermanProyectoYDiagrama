@@ -10,33 +10,50 @@ public class Bomberman extends Entidad {
 		this.miMapa = miMapa;
 		idBomberman = nroBomberman;
 		nroBomberman++;
+		this.destructible = true;
 	}
 
 	public void moverAIzquierda() {
-		if (miMapa.estaLibre(ubicacion) && ubicacion.posX > 0) {
-			ubicacion.posX--;
+		Ubicacion aux = this.ubicacion.clone();
+		aux.cambiarPosX(-1);
+		if (miMapa.estaLibre(aux) && aux.getPosX() >= 0) {
+			ubicacion.cambiarPosX(-1);
 			System.out.println("Se movio hacia la izquierda");
+		}else {
+			System.out.println("No podes moverte hacia la izquierda");
 		}
 	}
 
 	public void moverAbajo() {
-		if (miMapa.estaLibre(ubicacion) && ubicacion.posY > 0) {
-			ubicacion.posY--;
+		Ubicacion aux = this.ubicacion.clone();
+		aux.cambiarPosY(1);
+		if (miMapa.estaLibre(aux) && aux.getPosY() < Mapa.ALTO) {
+			ubicacion.cambiarPosY(1);
 			System.out.println("Se movio hacia abajo");
+		}else {
+			System.out.println("No podes moverte hacia abajo");
 		}
 	}
 
 	public void moverADerecha() {
-		if (ubicacion.posX < Mapa.ANCHO && miMapa.estaLibre(ubicacion)) {
-			ubicacion.posX++;
+		Ubicacion aux = this.ubicacion.clone();
+		aux.cambiarPosX(1);
+		if (aux.getPosX() < Mapa.ANCHO && miMapa.estaLibre(aux)) {
+			ubicacion.cambiarPosX(1);
 			System.out.println("Se movio hacia la derecha");
+		}else {
+			System.out.println("No podes moverte hacia la derecha");
 		}
 	}
 
 	public void moverArriba() {
-		if (ubicacion.posY < Mapa.ALTO && miMapa.estaLibre(ubicacion)) {
-			ubicacion.posY++;
+		Ubicacion aux = this.ubicacion.clone();
+		aux.cambiarPosY(-1);
+		if (aux.getPosY() >= 0 && miMapa.estaLibre(aux)) {
+			ubicacion.cambiarPosY(-1);
 			System.out.println("Se movio hacia arriba");
+		}else {
+			System.out.println("No podes moverte hacia arriba");
 		}
 	}
 
@@ -59,6 +76,6 @@ public class Bomberman extends Entidad {
 	}
 	
 	public Ubicacion obtenerUbicacion() {
-		return super.ubicacion;
+		return this.ubicacion;
 	}
 }
