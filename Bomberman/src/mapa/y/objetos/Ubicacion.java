@@ -23,8 +23,6 @@ public class Ubicacion implements Comparable<Ubicacion> {
 		if((cmp = this.posX - ubicacion.posX) == 0) 
 			return this.posY - ubicacion.posY;
 		return cmp;
-		
-//		return this.posX + this.posY - ubicacion.posY - ubicacion.posX;
 	}
 
 	@Override

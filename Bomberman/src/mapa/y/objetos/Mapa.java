@@ -1,6 +1,5 @@
 package mapa.y.objetos;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ public class Mapa {
 	public static final int ALTO = 5;
 	private Map<Ubicacion, Entidad> conjuntoEntidades = new TreeMap<Ubicacion, Entidad>();
 	private Bomberman[] listaBomberman;
-	private List<Ubicacion> rangoExplosion;
 
 	public Mapa() {
 		conjuntoEntidades.put(new Ubicacion(1, 1), new Muro(1, 1));
@@ -28,60 +26,6 @@ public class Mapa {
 		return conjuntoEntidades;
 	}
 
-//	void explotarBomba(int posX, int posY) {
-//		Ubicacion ubic = new Ubicacion(posX, posY);
-//		Entidad obj = conjuntoEntidades.get(ubic);
-//		if (obj != null && obj.getClass().getSimpleName().equals("Bomba")) {
-//			Bomba exp = (Bomba) obj;
-//			exp.explotar(this);
-//			conjuntoEntidades.remove(ubic);
-//			rangoExplosion = generarRangoExplosion(ubic);
-//			Iterator<Ubicacion> iter = rangoExplosion.iterator();
-//			while (iter.hasNext()) {
-//				ubic = iter.next();
-//				if ((obj = conjuntoEntidades.get(ubic)) != null) {
-//					if (obj.getClass().getSimpleName().equals("Bomba") == true) {
-//						Bomba aux = (Bomba) obj;
-//						aux.explotar(this);
-//					} else {
-//						if (obj.verSiEsVisible()) {
-//							conjuntoEntidades.remove(ubic);
-//							iter.remove();
-//						}
-//					}
-//
-//				}
-//			}
-//			iter = rangoExplosion.iterator();
-//			while (iter.hasNext()) {
-//				ubic = iter.next();
-//				if (ubic.equals(listaBomberman[0].obtenerUbicacion()) == true) {
-//					listaBomberman[0].morir();
-//				}
-//				if (ubic.equals(listaBomberman[1].obtenerUbicacion()) == true) {
-//					listaBomberman[1].morir();
-//				}
-//			}
-//		} else
-//			System.out.println("El objeto no puede explotar porque no es una bomba");
-
-//	}
-
-//	private List<Ubicacion> generarRangoExplosion(Ubicacion ubicBomba) {
-//		List<Ubicacion> aux = new ArrayList<Ubicacion>();
-//		aux.add(ubicBomba);
-//		if (ubicBomba.getPosX() + 1 < ANCHO)
-//			aux.add(new Ubicacion(ubicBomba.getPosX() + 1, ubicBomba.getPosY()));
-//		if (ubicBomba.getPosY() + 1 < ALTO)
-//			aux.add(new Ubicacion(ubicBomba.getPosX(), ubicBomba.getPosY() + 1));
-//		if (ubicBomba.getPosX() - 1 >= 0)
-//			aux.add(new Ubicacion(ubicBomba.getPosX() - 1, ubicBomba.getPosY()));
-//		if (ubicBomba.getPosY() - 1 >= 0)
-//			aux.add(new Ubicacion(ubicBomba.getPosX(), ubicBomba.getPosY() - 1));
-//
-//		return aux;
-//	}
-//
 	public void agregarBomba(Ubicacion miUbicacion) {
 		Ubicacion copia = miUbicacion.clone();
 		conjuntoEntidades.put(copia, new Bomba(copia));
@@ -135,6 +79,12 @@ public class Mapa {
 	
 	public void explotarBomba(Ubicacion u) {
 		Bomba b =((Bomba)conjuntoEntidades.get(u));
+		b.explotar(this);
+		
+	}
+	
+	public void explotarBomba(int posX,int posY) {
+		Bomba b =((Bomba)conjuntoEntidades.get(new Ubicacion(posX,posY)));
 		b.explotar(this);
 		
 	}

@@ -2,7 +2,7 @@ package mapa.y.objetos;
 
 public class Obstaculo extends Entidad{
 	private static int nroObstaculo = 0;
-	private int idObstaculo;
+	public int idObstaculo;
 	
 	public Obstaculo(final int posIniX,final int posIniY) {
 		super(posIniX,posIniY);

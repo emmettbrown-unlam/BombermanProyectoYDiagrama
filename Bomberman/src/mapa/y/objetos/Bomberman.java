@@ -16,21 +16,21 @@ public class Bomberman extends Entidad {
 	public void moverAIzquierda() {
 		Ubicacion aux = this.ubicacion.clone();
 		aux.cambiarPosX(-1);
-		if (miMapa.estaLibre(aux) && aux.getPosX() >= 0) {
+		if (aux.getPosX() >= 0 && miMapa.estaLibre(aux)) {
 			ubicacion.cambiarPosX(-1);
 			System.out.println("Se movio hacia la izquierda");
-		}else {
+		} else {
 			System.out.println("No podes moverte hacia la izquierda");
 		}
 	}
 
 	public void moverAbajo() {
 		Ubicacion aux = this.ubicacion.clone();
-		aux.cambiarPosY(1);
-		if (miMapa.estaLibre(aux) && aux.getPosY() < Mapa.ALTO) {
-			ubicacion.cambiarPosY(1);
+		aux.cambiarPosY(-1);
+		if (aux.getPosY() >= 0 && miMapa.estaLibre(aux)) {
+			ubicacion.cambiarPosY(-1);
 			System.out.println("Se movio hacia abajo");
-		}else {
+		} else {
 			System.out.println("No podes moverte hacia abajo");
 		}
 	}
@@ -41,18 +41,18 @@ public class Bomberman extends Entidad {
 		if (aux.getPosX() < Mapa.ANCHO && miMapa.estaLibre(aux)) {
 			ubicacion.cambiarPosX(1);
 			System.out.println("Se movio hacia la derecha");
-		}else {
+		} else {
 			System.out.println("No podes moverte hacia la derecha");
 		}
 	}
 
 	public void moverArriba() {
 		Ubicacion aux = this.ubicacion.clone();
-		aux.cambiarPosY(-1);
-		if (aux.getPosY() >= 0 && miMapa.estaLibre(aux)) {
-			ubicacion.cambiarPosY(-1);
+		aux.cambiarPosY(1);
+		if (aux.getPosY() < Mapa.ALTO && miMapa.estaLibre(aux)) {
+			ubicacion.cambiarPosY(1);
 			System.out.println("Se movio hacia arriba");
-		}else {
+		} else {
 			System.out.println("No podes moverte hacia arriba");
 		}
 	}
@@ -65,7 +65,7 @@ public class Bomberman extends Entidad {
 	public void morir() {
 		if (this.esVisible == true) {
 			esVisible = false;
-			System.out.println("El bomberman " + nroBomberman+ " ha muerto");
+			System.out.println("El bomberman " + idBomberman + " ha muerto");
 		}
 
 	}
@@ -74,7 +74,7 @@ public class Bomberman extends Entidad {
 		miMapa.agregarBomba(ubicacion);
 		System.out.println("SE HA PUESTO LA BOMBA");
 	}
-	
+
 	public Ubicacion obtenerUbicacion() {
 		return this.ubicacion;
 	}

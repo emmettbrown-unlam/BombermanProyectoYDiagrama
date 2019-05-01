@@ -36,6 +36,7 @@ public class Bomba extends Entidad {
 				exp.explotar(map);
 
 			} else if (ent.getClass().getSimpleName().equals("Obstaculo")) {
+				((Obstaculo)ent).destruir();
 				listaEnt.remove(ubic);
 			}
 
