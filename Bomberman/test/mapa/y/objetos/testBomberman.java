@@ -82,4 +82,29 @@ public class testBomberman {
 		Assert.assertEquals(expected, actual);
 		
 	}
+
+	@Test
+	public void queExplotaBombaHaciaCostados() {
+		Mapa m = new Mapa();
+		Bomberman[] listaBomb = new Bomberman[1];
+		listaBomb[0] = new Bomberman(0,0, m);
+		m.agregarBombermans(listaBomb);
+		m.mostrarMapa();
+		listaBomb[0].ponerBomba();
+		listaBomb[0].moverADerecha();
+		listaBomb[0].ponerBomba();
+		listaBomb[0].moverADerecha();
+		listaBomb[0].ponerBomba();
+		listaBomb[0].moverAbajo();
+		listaBomb[0].ponerBomba();
+		listaBomb[0].moverAbajo();
+		
+		m.explotarBomba(new Ubicacion(0,0));
+		m.mostrarMapa();
+//		Ubicacion expected = new Ubicacion(0,0);
+//		Ubicacion actual = listaBomb[0].obtenerUbicacion();
+//		Assert.assertEquals(expected, actual);
+		
+	}
+
 }

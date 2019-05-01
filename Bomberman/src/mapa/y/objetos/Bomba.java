@@ -6,7 +6,7 @@ public class Bomba extends Entidad {
 	private static int nroBomba = 0;
 	private int idBomba;
 	private int segsExplosion;
-	private int rango ;
+	private int rango;
 
 	public Bomba(final int posIniX, final int posIniY) {
 		super(posIniX, posIniY);
@@ -24,46 +24,42 @@ public class Bomba extends Entidad {
 		segsExplosion = 3;
 	}
 
-	public void explotar(Mapa m) {
-		Ubicacion uBomba = this.ubicacion.clone();
-		Bomberman[] listaBomb = m.obtenerBombermans();
-		Map<Ubicacion,Entidad> listaEnt = m.obtenerListaEntidades();
-		int posX = uBomba.getPosX();
-		for (int i = posX ; i < Mapa.ANCHO; i++) {
-			Entidad e = listaEnt.get(new Ubicacion(i,uBomba.getPosY()));
-			if ( e != null && e.destructible && (i - posX ) <= this.rango) {
-				listaEnt.remove(new Ubicacion(i,uBomba.getPosY()));
-			}else if(!e.destructible && e != null && (i - posX ) <= this.rango) {
-				break;
+	private boolean explotarEnCadena(Ubicacion ubic, Mapa map) {
+		Bomberman[] listaBomb = map.obtenerBombermans();
+		Map<Ubicacion, Entidad> listaEnt = map.obtenerListaEntidades();
+		Entidad ent = listaEnt.get(ubic);
+		Bomba exp;
+		if (ent != null && ent.destructible && ent.esVisible == true) {
+
+			if (ent.getClass().getSimpleName().equals("Bomba") ) {
+				exp = (Bomba) ent;
+				exp.explotar(map);
+
+			} else if (ent.getClass().getSimpleName().equals("Obstaculo")) {
+				listaEnt.remove(ubic);
 			}
-			
-			for (int j = 0; j < listaBomb.length; j++) {
-				if (listaBomb[j].ubicacion.equals(new Ubicacion(i,uBomba.getPosY()))) {
-					
-				}
+
+			return true;
+
+		} else if (ent != null && !ent.destructible) {
+			return false;
+		}
+		for (int j = 0; j < listaBomb.length; j++) {
+			if (listaBomb[j].ubicacion.equals(ubic)) {
+				listaBomb[j].morir();
 			}
 		}
-		
-		
-		
-//		for (int i = 0; i < listaBomb.length; i++) {
-//			if (listaBomb[i].obtenerUbicacion().equals(uBomba) == true)
-//				listaBomb[i].morir();
-//		}
-//		if (uBomba.getPosX() < Mapa.ANCHO - 1) {
-//			uBomba.cambiarPosX(1);
-//			if(listaEnt.get(uBomba) == null)
-//			for (int i = 0; i < listaBomb.length; i++) {
-//				if (listaBomb[i].obtenerUbicacion().equals(uBomba) == true)
-//					listaBomb[i].morir();
-//			
-//					
-//			}
-//		}
+		return false;
+	}
 
-//		if(m.)
-		m.eliminarBomba(this.ubicacion);
-		this.esVisible = false;
+	public void explotar(Mapa m) {
 		System.out.println("BUM, la bomba " + idBomba + " Exploto");
+		this.cambiarVisibilidad();
+		explotarEnCadena(new Ubicacion(this.ubicacion.getPosX(),this.ubicacion.getPosY()),m);	
+		explotarEnCadena(new Ubicacion(this.ubicacion.getPosX()+1,this.ubicacion.getPosY()),m);	
+		explotarEnCadena(new Ubicacion(this.ubicacion.getPosX()-1,this.ubicacion.getPosY()),m);	
+		explotarEnCadena(new Ubicacion(this.ubicacion.getPosX(),this.ubicacion.getPosY()+1),m);	
+		explotarEnCadena(new Ubicacion(this.ubicacion.getPosX(),this.ubicacion.getPosY()-1),m);	
+		m.eliminarBomba(this.ubicacion);
 	}
 }

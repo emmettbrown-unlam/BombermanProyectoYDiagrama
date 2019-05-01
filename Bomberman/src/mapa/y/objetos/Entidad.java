@@ -3,7 +3,7 @@ package mapa.y.objetos;
 public class Entidad {
 	protected Ubicacion ubicacion;
 	protected boolean esVisible;
-	protected boolean destructible;
+	protected boolean destructible = true;
 	
 	
 	public Entidad(final int posX,final int posY)

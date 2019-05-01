@@ -81,9 +81,10 @@ public class Mapa {
 //
 //		return aux;
 //	}
-
+//
 	public void agregarBomba(Ubicacion miUbicacion) {
-		conjuntoEntidades.put(miUbicacion, new Bomba(miUbicacion));
+		Ubicacion copia = miUbicacion.clone();
+		conjuntoEntidades.put(copia, new Bomba(copia));
 
 	}
 
@@ -130,5 +131,11 @@ public class Mapa {
 
 	public Bomberman[] obtenerBombermans() {
 		return listaBomberman;
+	}
+	
+	public void explotarBomba(Ubicacion u) {
+		Bomba b =((Bomba)conjuntoEntidades.get(u));
+		b.explotar(this);
+		
 	}
 }
