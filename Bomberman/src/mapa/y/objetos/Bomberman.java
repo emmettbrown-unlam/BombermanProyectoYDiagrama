@@ -24,14 +24,14 @@ public class Bomberman extends Entidad {
 		}
 	}
 
-	public void moverAbajo() {
+	public void moverArriba() {
 		Ubicacion aux = this.ubicacion.clone();
 		aux.cambiarPosY(-1);
 		if (aux.getPosY() >= 0 && miMapa.estaLibre(aux)) {
 			ubicacion.cambiarPosY(-1);
-			System.out.println("Se movio hacia abajo");
+			System.out.println("Se movio hacia arriba");
 		} else {
-			System.out.println("No podes moverte hacia abajo");
+			System.out.println("No podes moverte hacia arriba");
 		}
 	}
 
@@ -46,14 +46,14 @@ public class Bomberman extends Entidad {
 		}
 	}
 
-	public void moverArriba() {
+	public void moverAbajo() {
 		Ubicacion aux = this.ubicacion.clone();
 		aux.cambiarPosY(1);
 		if (aux.getPosY() < Mapa.ALTO && miMapa.estaLibre(aux)) {
 			ubicacion.cambiarPosY(1);
-			System.out.println("Se movio hacia arriba");
+			System.out.println("Se movio hacia abajo");
 		} else {
-			System.out.println("No podes moverte hacia arriba");
+			System.out.println("No podes moverte hacia abajo");
 		}
 	}
 

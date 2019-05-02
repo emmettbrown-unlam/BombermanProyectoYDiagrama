@@ -18,30 +18,30 @@ public class testBomberman {
 	}
 
 	@Test
-	public void seMueveElBombermanAbajo() {
+	public void seMueveElBombermanArriba() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[2];
 		listaBomb[0] = new Bomberman(0, 4, m);
 		m.agregarBombermans(listaBomb);
-		listaBomb[0].moverAbajo();
-		listaBomb[0].moverAbajo();
-		listaBomb[0].moverAbajo();
-		listaBomb[0].moverAbajo();
+		listaBomb[0].moverArriba();
+		listaBomb[0].moverArriba();
+		listaBomb[0].moverArriba();
+		listaBomb[0].moverArriba();
 		Ubicacion expected = new Ubicacion(0, 0);
 		Ubicacion actual = listaBomb[0].obtenerUbicacion();
 		Assert.assertEquals(expected, actual);
 	}
 
 	@Test
-	public void seMueveElBombermanArriba() {
+	public void seMueveElBombermanAbajo() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[2];
 		listaBomb[0] = new Bomberman(0, 0, m);
 		m.agregarBombermans(listaBomb);
-		listaBomb[0].moverArriba();
-		listaBomb[0].moverArriba();
-		listaBomb[0].moverArriba();
-		listaBomb[0].moverArriba();
+		listaBomb[0].moverAbajo();
+		listaBomb[0].moverAbajo();
+		listaBomb[0].moverAbajo();
+		listaBomb[0].moverAbajo();
 		Ubicacion expected = new Ubicacion(0, 4);
 		Ubicacion actual = listaBomb[0].obtenerUbicacion();
 		Assert.assertEquals(expected, actual);
@@ -78,24 +78,24 @@ public class testBomberman {
 	}
 
 	@Test
-	public void queColisionaExtremoMapaAbajo() {
+	public void queColisionaExtremoMapaArriba() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[1];
 		listaBomb[0] = new Bomberman(0, 0, m);
 		m.agregarBombermans(listaBomb);
-		listaBomb[0].moverAbajo();
+		listaBomb[0].moverArriba();
 		Ubicacion expected = new Ubicacion(0, 0);
 		Ubicacion actual = listaBomb[0].obtenerUbicacion();
 		Assert.assertEquals(expected, actual);
 	}
 
 	@Test
-	public void queColisionaExtremoMapaArriba() {
+	public void queColisionaExtremoMapaAbajo() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[1];
 		listaBomb[0] = new Bomberman(0, 4, m);
 		m.agregarBombermans(listaBomb);
-		listaBomb[0].moverArriba();
+		listaBomb[0].moverAbajo();
 		Ubicacion expected = new Ubicacion(0, 4);
 		Ubicacion actual = listaBomb[0].obtenerUbicacion();
 		Assert.assertEquals(expected, actual);
@@ -147,25 +147,25 @@ public class testBomberman {
 		Assert.assertEquals(new Ubicacion(3, 0), listaBomb[0].obtenerUbicacion());
 	}
 	@Test
-	public void queColisionaConBombaArriba() {
+	public void queColisionaConBombaAbajo() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[1];
 		listaBomb[0] = new Bomberman(0, 4, m);
 		m.agregarBombermans(listaBomb);
 		listaBomb[0].ponerBomba();
-		listaBomb[0].moverAbajo();
 		listaBomb[0].moverArriba();
+		listaBomb[0].moverAbajo();
 		Assert.assertEquals(new Ubicacion(0, 3), listaBomb[0].obtenerUbicacion());
 	}
 	@Test
-	public void queColisionaConBombaAbajo() {
+	public void queColisionaConBombaArriba() {
 		Mapa m = new Mapa(1);
 		Bomberman[] listaBomb = new Bomberman[1];
 		listaBomb[0] = new Bomberman(0, 0, m);
 		m.agregarBombermans(listaBomb);
 		listaBomb[0].ponerBomba();
-		listaBomb[0].moverArriba();
 		listaBomb[0].moverAbajo();
+		listaBomb[0].moverArriba();
 		
 		Assert.assertEquals(new Ubicacion(0, 1), listaBomb[0].obtenerUbicacion());
 	}
