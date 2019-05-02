@@ -168,20 +168,5 @@ public class testBomberman {
 		listaBomb[0].moverArriba();
 		
 		Assert.assertEquals(new Ubicacion(0, 1), listaBomb[0].obtenerUbicacion());
-	}
-	@Test
-	public void queBombaMataBomberman() {
-		Mapa m = new Mapa(1);
-		Bomberman[] listaBomb = new Bomberman[3];
-		listaBomb[0] = new Bomberman(0, 0, m);
-		listaBomb[1] = new Bomberman(0, 0, m);
-		listaBomb[2] = new Bomberman(0, 0, m);
-		m.agregarBombermans(listaBomb);
-		listaBomb[0].ponerBomba();
-		m.explotarBomba(0,0);
-		Assert.assertEquals(false,listaBomb[0].verSiEsVisible());
-		Assert.assertEquals(false,listaBomb[1].verSiEsVisible());
-		Assert.assertEquals(false,listaBomb[2].verSiEsVisible());
-	}
-	
+	}	
 }

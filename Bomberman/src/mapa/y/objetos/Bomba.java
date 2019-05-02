@@ -45,11 +45,14 @@ public class Bomba extends Entidad {
 		} else if (ent != null && !ent.destructible) {
 			return false;
 		}
-		for (int j = 0; j < listaBomb.length; j++) {
-			if (listaBomb[j].ubicacion.equals(ubic)) {
-				listaBomb[j].morir();
-			}
+		if (listaBomb != null) {
+			for (int j = 0; j < listaBomb.length; j++) {
+				if (listaBomb[j].ubicacion.equals(ubic)) {
+					listaBomb[j].morir();
+				}
+			}			
 		}
+
 		return false;
 	}
 
