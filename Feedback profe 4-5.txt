@@ -1,0 +1,7 @@
+-Sacar el mapa de bomberman
+-Hacer una clase"colisiones" o que el mapa regule las colisiones y movimientos
+-hacer una coleccion de bombas dentro de mapa
+-Que el mapa no explote las bombas
+-Que las bombas exploten después de un cierto tiempo
+-Hacer un solo método para los movimientos del bomberman (no repetir tanto código)
+-(Al profe no le gustó el atributo "esVisible"
